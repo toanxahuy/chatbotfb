@@ -1,6 +1,6 @@
 const APP_SECRET = 'a39070d7654de5dfdd277310c66ea082';
 const VALIDATION_TOKEN = 'a39070d7654de5dfdd277310c66ea0822';
-const PAGE_ACCESS_TOKEN = 'EAACHpAFEroMBAKsehF8ZA0RPavoU7OWeIG9uZC9BQhLItYv19xvKiL754MC48xNTaU3WKTu0ZAZBxjg8WSOBvJ9HZANFMmTjQmsQi3Y07zZCTNJeRe45X4FaqTh40ovqAb9CUG5NAjt25BOseL7qSMvYUxuLnIFivc2LYUgnAsssnDZCW0gWcDG';
+const PAGE_ACCESS_TOKEN = 'EAAarGkDchPwBAJMS69xPbNizG6YiX9c7xjnSO0CZCJNbjUEwPdX5exfLF3GyqFRxWYj5uZBRTZCUEfh1ZCXkMZAQEZAscBbUx5Uw6612hVsM693abKMgvMrcfC82QGYEjEWw8dUZA2RGYBCRvEZAadgH50PX1XwVg1XAj12d2mD3ZAZC04J46RojVV';
  
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 });
  
 app.get('/webhook', function(req, res) { // Đây là path để validate tooken bên app facebook gửi qua
+  console.log('Toan Test');
   if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     res.send(req.query['hub.challenge']);
   }
@@ -25,6 +26,7 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 });
  
 app.post('/webhook', function(req, res) { // Phần sử lý tin nhắn của người dùng gửi đến
+  console.log(req.body)
   var entries = req.body.entry;
   for (var entry of entries) {
     var messaging = entry.messaging;
